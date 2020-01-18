@@ -10,40 +10,8 @@ class Horoscope:
 
     @staticmethod
     def get_todays_horoscope(sunsign):
-        url = "http://hindi-horoscope.ictv.in/horoscopes/daily-horoscope/aries" + sunsign
-        response = requests.get(url)
-        tree = html.fromstring(response.content)
-        date = str(tree.xpath(
-            "/html/body/text()"))
-        date = date.replace("']", "").replace("['", "")
-        date_utc = datetime.now(timezone.utc)
-        date_website = "-".join(date.split('-')[::-1])
-        date_local = str(date_utc.astimezone()).split(' ')[0]
-
-        if date_local < date_website :
-            url = "https://www.ganeshaspeaks.com/horoscopes/yesterday-horoscope/" + sunsign
-            response = requests.get(url)
-            tree = html.fromstring(response.content)
-            horoscope = str(tree.xpath(
-                "//*[@id=\"daily\"]/div/div[1]/div[2]/p[1]/text()"))
-        elif date_local > date_website :
-            url = "https://www.ganeshaspeaks.com/horoscopes/tomorrow-horoscope/" + sunsign
-            response = requests.get(url)
-            tree = html.fromstring(response.content)
-            horoscope = str(tree.xpath(
-                "//*[@id=\"daily\"]/div/div[1]/div[2]/p[1]/text()"))
-        else :
-            horoscope = str(tree.xpath(
-            "//*[@id=\"daily\"]/div/div[1]/div[2]/p[1]/text()"))
-
-        horoscope = horoscope.replace("\\n", "").replace("  ", "").replace("[\"", "").replace("\"]", "").replace("[\'", "").replace("\']", "")
-        dict = {
-            'date': date_local,
-            'horoscope': horoscope,
-            'sunsign': sunsign
-        }
-
-        return dict
+        url = "http://hindi-horoscope.ictv.in/horoscopes/daily-horoscope/aries/aries.html"
+      
 
     @staticmethod
     def get_weekly_horoscope(sunsign):
