@@ -10,7 +10,7 @@ class Horoscope:
 
     @staticmethod
     def get_todays_horoscope(sunsign):
-        url = "http://hindi-horoscope.ictv.in/horoscopes/daily-horoscope/" + sunsign
+        url = "http://hindi-horoscope.ictv.in/horoscopes/daily-horoscope/aries" + sunsign
         response = requests.get(url)
         tree = html.fromstring(response.content)
         date = str(tree.xpath(
