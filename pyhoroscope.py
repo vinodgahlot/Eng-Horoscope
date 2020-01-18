@@ -10,11 +10,11 @@ class Horoscope:
 
     @staticmethod
     def get_todays_horoscope(sunsign):
-        url = "http://www.ganeshaspeaks.com/horoscopes/daily-horoscope/" + sunsign
+        url = "http://hindi-horoscope.ictv.in/horoscopes/daily-horoscope/" + sunsign
         response = requests.get(url)
         tree = html.fromstring(response.content)
         date = str(tree.xpath(
-            "//*[@id=\"daily\"]/div/div[1]/div[1]/div[2]/div/p/text()"))
+            "/html/body/text()"))
         date = date.replace("']", "").replace("['", "")
         date_utc = datetime.now(timezone.utc)
         date_website = "-".join(date.split('-')[::-1])
